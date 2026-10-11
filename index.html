@@ -299,6 +299,44 @@ section.block { padding-block: clamp(72px, 12vh, 140px); border-top: 1px solid v
 .gh-grid i { aspect-ratio: 1; border-radius: 2px; background: var(--fg); }
 .gh-cap { font-size: 11.5px; color: var(--muted); margin-top: auto; }
 
+/* lumen preview: the island is always dark, like the real app */
+.lm-slide { padding: 0; background: var(--soft); background-image: radial-gradient(circle at 50% -20%, color-mix(in srgb, var(--fg) 14%, transparent), transparent 60%); }
+.lm-island {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  width: 118px; height: 30px; border-radius: 999px; background: #0b0b0d; color: #f2f2f4; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 8px 30px -6px rgba(0,0,0,.5), 0 0 26px -4px rgba(255,255,255,.22);
+  animation: lmIsland 5s cubic-bezier(.22,1,.36,1) infinite;
+}
+@keyframes lmIsland {
+  0%, 28% { width: 118px; height: 30px; border-radius: 999px; }
+  40%, 82% { width: 290px; height: 84px; border-radius: 26px; }
+  94%, 100% { width: 118px; height: 30px; border-radius: 999px; }
+}
+.lm-pill { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; animation: lmPill 5s infinite; }
+.lm-full { position: absolute; inset: 0; display: flex; align-items: center; gap: 12px; padding: 14px; opacity: 0; animation: lmFull 5s infinite; }
+@keyframes lmPill { 0%, 30% { opacity: 1; } 36%, 88% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes lmFull { 0%, 38% { opacity: 0; transform: scale(.94); } 46%, 78% { opacity: 1; transform: none; } 86%, 100% { opacity: 0; transform: scale(.94); } }
+.lm-dot { width: 8px; height: 8px; border-radius: 50%; background: #f2f2f4; box-shadow: 0 0 8px rgba(255,255,255,.7); }
+.lm-eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.lm-eq i { width: 3px; height: 100%; border-radius: 2px; background: #f2f2f4; transform-origin: 50% 100%; animation: lmEq .9s ease-in-out infinite; }
+.lm-eq i:nth-child(2) { animation-delay: .15s; } .lm-eq i:nth-child(3) { animation-delay: .3s; }
+.lm-eq i:nth-child(4) { animation-delay: .45s; } .lm-eq i:nth-child(5) { animation-delay: .6s; }
+.lm-eq.big { height: 22px; margin-left: auto; }
+@keyframes lmEq { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+.lm-art { flex: 0 0 54px; height: 54px; border-radius: 12px; background: linear-gradient(135deg, #f2f2f4, #6d7078 60%, #2a2b30); }
+.lm-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.lm-meta b { font-size: 13px; line-height: 1.2; }
+.lm-meta span { font: 11px var(--mono); color: #9a9da5; }
+.lm-bar { width: 110px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.18); margin-top: 6px; overflow: hidden; }
+.lm-bar i { display: block; height: 100%; width: 40%; background: #f2f2f4; animation: lmProg 5s linear infinite; }
+@keyframes lmProg { from { width: 20%; } to { width: 70%; } }
+.lm-hint { position: absolute; left: 0; right: 0; bottom: 48px; text-align: center; font-size: 12px; color: var(--muted); }
+.lm-hint kbd { font: 11px var(--mono); padding: 2px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--surface); color: var(--fg); }
+.lm-taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 32px; display: flex; justify-content: center; align-items: center; gap: 8px; background: color-mix(in srgb, var(--surface) 80%, transparent); border-top: 1px solid var(--line); }
+.lm-taskbar i { width: 16px; height: 16px; border-radius: 4px; background: var(--line); }
+.lm-taskbar i:nth-child(3) { background: var(--fg); }
+
 /* ---------- contact ---------- */
 .contact { padding-block: clamp(80px, 14vh, 160px) clamp(40px, 6vh, 64px); border-top: 1px solid var(--line); }
 .big-cta { font-family: var(--display); font-weight: 700; font-size: clamp(2.8rem, 11vw, 9.5rem); letter-spacing: -.055em; line-height: .95; margin: 18px 0 clamp(36px, 6vh, 64px); text-wrap: balance; }
@@ -380,7 +418,7 @@ section.block { padding-block: clamp(72px, 12vh, 140px); border-top: 1px solid v
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marquee">
-      <span>Python</span><span>Telegram-боты</span><span>ИИ-ассистенты</span><span>Docker</span><span>Веб</span><span>Пет-проекты</span><span>Эксперименты</span>
+      <span>Python</span><span>Telegram-боты</span><span>ИИ-ассистенты</span><span>Docker</span><span>Rust</span><span>Приложения для Windows</span><span>Веб</span><span>Пет-проекты</span><span>Эксперименты</span>
     </div>
   </div>
 
@@ -399,7 +437,7 @@ section.block { padding-block: clamp(72px, 12vh, 140px); border-top: 1px solid v
           <div class="avatar-core">M</div>
         </div>
         <div>
-          <p class="about-text" id="aboutText">Привет, я Mittens. Делаю свои проекты: Telegram-бота с ИИ, сайты и мелкие штуки, которые решают мои же задачи. Тут собрано то, что уже получилось, и место под то, что ещё впереди.</p>
+          <p class="about-text" id="aboutText">Привет, я Mittens. Делаю свои проекты: Telegram-бота с ИИ, приложение для Windows, сайты и мелкие штуки, которые решают мои же задачи. Тут собрано то, что уже получилось, и место под то, что ещё впереди.</p>
           <div class="facts reveal" style="--d:.1s">
             <div class="fact"><span class="label">Люблю</span><b>Боты и ИИ</b><span>автоматизировать рутину</span></div>
             <div class="fact"><span class="label">GitHub</span><b>@Mittikbb</b><span>все мои репозитории</span></div>
@@ -417,7 +455,18 @@ section.block { padding-block: clamp(72px, 12vh, 140px); border-top: 1px solid v
         <span class="label">Что я сделал</span>
       </div>
       <ul class="projects" id="projects">
-        <li class="project reveal" data-preview="0">
+        <li class="project reveal" data-preview="5">
+          <a href="https://github.com/Mittikbb/lumen" target="_blank" rel="noopener">
+            <span class="p-year">2026</span>
+            <span class="p-main">
+              <span class="p-name">Lumen</span>
+              <span class="p-desc">Живой остров сверху рабочего стола Windows в духе Dynamic Island: музыка, буфер обмена, лаунчер по Alt+Space, полка для файлов и погода.</span>
+            </span>
+            <span class="p-tags"><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">React</span><span class="tag">TypeScript</span></span>
+            <span class="p-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </a>
+        </li>
+        <li class="project reveal" data-preview="0" style="--d:.08s">
           <a href="https://github.com/Mittikbb" target="_blank" rel="noopener">
             <span class="p-year">2026</span>
             <span class="p-main">
@@ -428,7 +477,7 @@ section.block { padding-block: clamp(72px, 12vh, 140px); border-top: 1px solid v
             <span class="p-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </a>
         </li>
-        <li class="project soon reveal" data-preview="1" style="--d:.08s">
+        <li class="project soon reveal" data-preview="1" style="--d:.16s">
           <div class="row">
             <span class="p-year">Скоро</span>
             <span class="p-main">
@@ -494,6 +543,18 @@ section.block { padding-block: clamp(72px, 12vh, 140px); border-top: 1px solid v
         <span>mittikbb</span>
         <small>Нажми, чтобы скопировать ник</small>
       </div>
+    </div>
+    <div class="preview-slide lm-slide" style="top:500%">
+      <div class="lm-island">
+        <div class="lm-pill"><span class="lm-dot"></span><span class="lm-eq"><i></i><i></i><i></i><i></i></span></div>
+        <div class="lm-full">
+          <div class="lm-art"></div>
+          <div class="lm-meta"><b>Сейчас играет</b><span>Lumen · media</span><div class="lm-bar"><i></i></div></div>
+          <span class="lm-eq big"><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+      <div class="lm-hint"><kbd>Alt</kbd>+<kbd>Space</kbd> лаунчер</div>
+      <div class="lm-taskbar"><i></i><i></i><i></i><i></i><i></i></div>
     </div>
     <div class="preview-slide gh-slide" style="top:400%">
       <div class="chat-top"><span class="chat-ava">M</span><span><b>Mittikbb</b><small>github.com</small></span></div>
